@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>First Backbone</title>
+</head>
+
+<body>
+  <script type="text/javascript" src="../underscore.js"></script>
+  <script type="text/javascript" src="../backbone.js"></script>
+  <script type="text/javascript">
+    (function () {
+      var MasterModel = Backbone.Model.extend({
+        initialize: function () {
+          console.log('model initialized');
+        },
+        defaults: {
+          companyName: 'Yuuwei',
+          country: 'China',
+          city: 'Hangzhou'
+        }
+      });
+      var masterModel = new MasterModel();
+      console.log('Model object: ', masterModel);
+      console.log('Company Name: ' + masterModel.get('companyName'));
+      console.log('Country: ' + masterModel.get('country'));
+      console.log('City: ' + masterModel.get('city'));
+      // console.log('masterModel is changed1: ' + masterModel.hasChanged());
+      console.log('Previous attributes1: ', masterModel._previousAttributes);
+      masterModel.set('totalEmployees', '24');
+      // console.log('masterModel is changed2: ' + masterModel.hasChanged());
+      console.log('Previous attributes2: ', masterModel._previousAttributes);
+      console.log('Total Employees: ' + masterModel.get('totalEmployees'));
+      masterModel.set({
+        CMMilevel: 5,
+        totalDevCenters: 2
+      });
+      // console.log('masterModel is changed3: ' + masterModel.hasChanged());
+      // console.log('masterModel.set: ' + masterModel.set);
+      console.log('CMMilevel Standard: ', masterModel.get('CMMilevel'));
+      console.log('Total Development Centers in China: ', masterModel.get('totalDevCenters'));
+      console.log('Previous attributes3: ', masterModel._previousAttributes);
+      console.log('1st Way: ', masterModel.attributes);
+      // console.log('2nd Way: ', masterModel.toJSON());
+    })();
+  </script>
+</body>
+
+</html>
