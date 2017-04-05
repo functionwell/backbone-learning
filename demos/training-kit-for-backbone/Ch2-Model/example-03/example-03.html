@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>example-03</title>
+    <script type="text/javascript" src="../../js/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="../../js/underscore-1.8.3.js"></script>
+    <script type="text/javascript" src="../../js/backbone-1.3.3.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      +function(){
+        console.log('example-03');
+        var MasterModel = Backbone.Model.extend({
+          url: function(){
+            return '../../js/google-map-api.json';
+          },
+          parse: function(response){
+            console.log('Parse response: ');
+            console.log(response);
+            return response;
+          }
+        });
+
+        var masterModel = new MasterModel();
+        console.log(masterModel);
+
+        masterModel.fetch({
+          success: function(){
+            console.log('Data coming from fetch success: ');
+            console.log(masterModel.toJSON());
+          },
+          error: function(){
+            console.log('Some error triggered while accessing data service api.');
+          }
+        });
+
+        masterModel.set({
+          firstName: 'Ke03',
+          lastName: 'Fang'
+        });
+
+        masterModel.save(masterModel.toJSON(), {
+          success: function(){
+            console.log('Data coming from fetch success: ');
+            console.log(masterModel.toJSON());
+          },
+          error: function(){
+            console.log('Some error triggered while accessing Google service api.');
+          }
+        });
+
+        masterModel.destroy(masterModel.toJSON(), {
+          success: function(){
+            console.log('Data coming from fetch success: ');
+            console.log(masterModel.toJSON());
+          },
+          error: function(){
+            console.log('Some error triggered while accessing Google service api.');
+          }
+        });
+
+      }();
+    </script>
+  </body>
+</html>
